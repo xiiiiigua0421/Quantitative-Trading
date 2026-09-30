@@ -80,14 +80,14 @@ main{{max-width:1160px;margin:40px auto;padding:0 24px 48px}}h1{{font-size:30px;
 .eyebrow{{color:#39716f;font-weight:600;letter-spacing:.08em}}.muted{{color:#647789}}.badge{{display:inline-block;background:#fff1cc;color:#785400;padding:5px 12px;border-radius:6px}}
 .cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}}.card,section{{background:white;border:1px solid #e1e8ef;border-radius:10px;padding:22px}}
 .card span{{display:block;color:#647789;font-size:13px}}.card strong{{display:block;font-size:27px;margin-top:5px;font-variant-numeric:tabular-nums}}section{{margin-top:18px}}
-.chart{{width:100%;height:auto;display:block}}.legend{{display:flex;gap:24px;font-size:13px}}.key::before{{content:"";display:inline-block;width:18px;height:3px;margin:0 8px 3px 0;background:#16877e}}.benchmark::before{{background:#8093aa}}
+.chart-wrap{{overflow:auto}}.chart{{width:100%;min-width:700px;height:auto;display:block}}.legend{{display:flex;gap:24px;font-size:13px}}.key::before{{content:"";display:inline-block;width:18px;height:3px;margin:0 8px 3px 0;background:#16877e}}.benchmark::before{{background:#8093aa}}
 ul{{padding-left:22px}}.scroll{{overflow:auto}}table{{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}}th,td{{padding:10px 12px;text-align:right;border-bottom:1px solid #e7edf3}}th{{color:#647789;text-align:right}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;background:#f4f7fa;padding:18px;border-radius:8px}}
 footer{{color:#647789;font-size:12px;margin-top:22px}}@media(max-width:650px){{main{{margin-top:20px;padding:0 14px 30px}}.cards{{grid-template-columns:repeat(2,1fr)}}.card,section{{padding:16px}}h1{{font-size:25px}}.card strong{{font-size:23px}}}}
 </style></head><body><main>
 <div class="eyebrow">QUANT TRADING / v{__version__}</div><h1>{title}</h1>
 <span class="badge">{caution}</span><p class="muted">資料區間 {bars.index[0].date()} — {bars.index[-1].date()} · {len(bars)} 個交易日 · 均線 {config.strategy.fast_window}/{config.strategy.slow_window} · 初始資金 ${config.initial_cash:,.0f}</p>
 <div class="cards">{''.join(cards)}</div>
-<section><h2>帳戶淨值（USD）</h2><div class="legend"><span class="key">策略</span><span class="key benchmark">買入持有基準</span></div>{chart}
+<section><h2>帳戶淨值（USD）</h2><div class="legend"><span class="key">策略</span><span class="key benchmark">買入持有基準</span></div><div class="chart-wrap">{chart}</div>
 <p class="muted">橫軸為資料交易日順序；淨值包含持倉與應收股息。成交採次交易日開盤近似，與券商成交可能有差異。</p></section>
 <section><h2>資料與模型限制</h2><ul>{warning_html or '<li>仍需樣本外與前向模擬驗證。</li>'}</ul><ul>{notes_html}</ul></section>
 <section><h2>交易與公司行動紀錄</h2><div class="scroll">{trades_html}</div></section>
@@ -116,12 +116,12 @@ def equity_svg(frame: pd.DataFrame) -> str:
     parts = [f'<svg class="chart" role="img" aria-label="策略與買入持有淨值曲線" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">']
     for tick in np.linspace(lo, hi, 5):
         yy = y(tick)
-        parts.append(f'<line x1="{left}" y1="{yy:.2f}" x2="{width-right}" y2="{yy:.2f}" stroke="#e7edf3"/><text x="{left-10}" y="{yy+4:.2f}" text-anchor="end" font-size="12" fill="#647789">{tick:,.0f}</text>')
+        parts.append(f'<line x1="{left}" y1="{yy:.2f}" x2="{width-right}" y2="{yy:.2f}" stroke="#e7edf3"/><text x="{left-10}" y="{yy+4:.2f}" text-anchor="end" font-size="16" fill="#647789">{tick:,.0f}</text>')
     for col, color in zip(columns, ("#16877e", "#8093aa")):
         points = " ".join(f"{x(i):.2f},{y(value):.2f}" for i, value in enumerate(frame[col]))
         parts.append(f'<polyline points="{points}" fill="none" stroke="{color}" stroke-width="2.2"/>')
     for index in sorted(set([0, len(frame) // 2, len(frame) - 1])):
         anchor = "start" if index == 0 else "end" if index == len(frame) - 1 else "middle"
-        parts.append(f'<text x="{x(index):.2f}" y="{height-12}" text-anchor="{anchor}" font-size="12" fill="#647789">{frame.index[index].date()}</text>')
+        parts.append(f'<text x="{x(index):.2f}" y="{height-12}" text-anchor="{anchor}" font-size="16" fill="#647789">{frame.index[index].date()}</text>')
     parts.append("</svg>")
     return "".join(parts)

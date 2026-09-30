@@ -368,7 +368,7 @@ def _paper_step_locked(bars, config, broker, submit, now, db, result):
     _put(db, "peak_equity", peak)
     drawdown = 1 - account["equity"] / peak
     result["drawdown"] = drawdown
-    if drawdown >= config.risk.max_drawdown:
+    if drawdown + 1e-12 >= config.risk.max_drawdown:
         _put(db, "risk_halted", True)
     risk_halted = bool(_meta(db, "risk_halted", False))
     result["risk_halted"] = risk_halted

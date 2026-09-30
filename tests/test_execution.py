@@ -227,6 +227,18 @@ def test_drawdown_peak_survives_restart_and_halts(config):
     assert broker.submissions == []
 
 
+def test_drawdown_exact_threshold_halts_despite_float_rounding(config):
+    broker = FakeBroker()
+    threshold_config = replace(config, risk=replace(config.risk, max_drawdown=0.2))
+    step(make_bars(), threshold_config, broker, submit=False)
+    broker.equity = 8000
+    result = step(make_bars(), threshold_config, broker)
+    assert result["drawdown"] == pytest.approx(0.2)
+    assert result["action"] == "hold" and result["risk_halted"] is True
+    assert get_status(config.state_path)["risk_halted"] is True
+    assert broker.submissions == []
+
+
 def test_drawdown_liquidation_survives_restart_and_never_reenters(config):
     broker = FakeBroker()
     step(make_bars(), config, broker)
