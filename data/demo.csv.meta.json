@@ -1,0 +1,10 @@
+{
+  "symbol": "DEMO",
+  "source": "deterministic_synthetic",
+  "feed": "synthetic",
+  "adjustment": "raw",
+  "synthetic": true,
+  "corporate_actions_complete": true,
+  "description": "Engineering fixture with two dividends and a 2:1 split; not market data.",
+  "sha256": "155e25a749c12be5738a2a3e48c82d82c3d73f9732460506456bea2d1ab603dc"
+}
