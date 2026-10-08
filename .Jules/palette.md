@@ -1,0 +1,3 @@
+## 2024-10-09 - Accessible Scrollable Regions in Reports
+**Learning:** Statically generated HTML reports in this app (like the demo backtest report) use scrollable wrappers for charts (`.chart-wrap`) and data tables (`.scroll`). However, these elements lacked keyboard focus by default, causing content within them to be inaccessible or difficult to navigate for keyboard users.
+**Action:** Ensure horizontally scrollable containers receive `tabindex="0"`, `role="region"`, and a descriptive `aria-label`. Additionally, styling these wrappers with a `:focus-visible` state helps keyboard users visibly track their focused position within complex data layouts.
