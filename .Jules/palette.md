@@ -1,0 +1,3 @@
+## 2026-10-10 - Keyboard Accessibility for Scrollable Regions
+**Learning:** Scrollable regions without interactive children (like charts or large data tables) cannot be scrolled by keyboard-only users unless the region itself can receive focus. The focus ring is critical for the user to know where they are, but a default outline might be missing or ugly.
+**Action:** Always add `tabindex="0"`, `role="region"`, and an `aria-label` to containers with `overflow: auto` or `overflow: scroll`. Accompany this with a styled `:focus-visible` outline using the brand color to ensure it is both accessible and visually integrated.
