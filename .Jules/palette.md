@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessible Scrollable Regions
+**Learning:** `overflow: auto` containers need `tabindex="0"`, `role="region"`, and an `aria-label` to be keyboard scrollable and announced properly by screen readers. Without `tabindex="0"`, keyboard-only users cannot scroll the content if it overflows. Adding `:focus-visible` styling is also crucial so users know when the region has focus.
+**Action:** Always add `tabindex="0"`, `role="region"`, `aria-label` (localized to the app's language), and a clear focus indicator (`:focus-visible`) to elements with `overflow: auto` or `overflow: scroll` that contain non-focusable content.
