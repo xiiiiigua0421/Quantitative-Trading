@@ -1,0 +1,3 @@
+## 2024-10-14 - Keyboard Accessibility for Scrollable Tables and Charts
+**Learning:** In statically generated HTML reports, `overflow: auto` elements (like charts or large data tables) become focusable in some browsers but lack proper semantics and visual focus indicators, trapping keyboard users or confusing screen readers.
+**Action:** Always add `tabindex="0"`, `role="region"`, `aria-labelledby="heading-id"`, and a `:focus-visible` CSS rule (e.g., brand-colored outline) to `.scroll` and `.chart-wrap` container elements to ensure explicit, visible, and semantically accessible keyboard scrolling.
