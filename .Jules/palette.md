@@ -1,0 +1,3 @@
+## 2024-05-18 - Keyboard Accessibility for Scrollable Regions
+**Learning:** In the quant-trading HTML reports, some content (like wide tables or charts) was placed inside scrollable regions (`overflow: auto`) without being focusable by the keyboard. This prevents keyboard-only users from easily scrolling the regions if they aren't using a mouse/touchpad. Adding `tabindex="0"`, `role="region"`, and an `aria-label` allows keyboard users to focus and scroll the region.
+**Action:** When creating `overflow: auto` or `overflow: scroll` wrapper containers for large data, always add `tabindex="0"`, `role="region"`, an appropriate `aria-label`, and ensure there is a `:focus-visible` outline for visual feedback.
