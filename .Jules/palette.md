@@ -1,0 +1,3 @@
+## 2024-05-18 - Accessibility standard for report scroll areas
+**Learning:** HTML reports generated via Python f-strings use `overflow: auto` for charts and tables on smaller screens or for large datasets, which can trap keyboard users or hide content if they can't scroll via keyboard.
+**Action:** When creating or modifying scrollable wrapper containers in HTML reports, always ensure keyboard accessibility by adding `tabindex="0"`, `role="region"`, a descriptive `aria-label` (in the local language, Traditional Chinese), and a visible `:focus-visible` CSS outline to make focus apparent to keyboard users without disrupting mouse users.
