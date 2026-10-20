@@ -1,0 +1,3 @@
+## 2026-10-20 - Added Keyboard Accessibility to Scrollable Containers
+**Learning:** When using `overflow: auto` or `scroll` in HTML containers (like tables or charts), users who rely on keyboard navigation cannot easily scroll the content if these containers don't have focus support. Adding `tabindex="0"` along with an appropriate `role="region"` and descriptive `aria-label` (in Traditional Chinese as per the app's standards) ensures screen readers understand the context and keyboard users can seamlessly scroll through data.
+**Action:** Always ensure scrollable wrapper containers are accessible by adding `tabindex="0"`, `role="region"`, a descriptive `aria-label`, and visible focus styles (`:focus-visible`).
