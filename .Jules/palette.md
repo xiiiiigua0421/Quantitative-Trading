@@ -1,0 +1,3 @@
+## 2023-10-27 - Keyboard Accessibility for Scrollable Data Wrappers
+**Learning:** Scrollable wrappers (`overflow: auto` or `scroll`) containing complex data structures like SVG charts or wide HTML tables are completely inaccessible to keyboard users unless explicitly configured. They cannot be scrolled using arrow keys because they do not receive keyboard focus by default.
+**Action:** Always add `tabindex="0"`, an appropriate ARIA role (e.g., `role="region"`), a descriptive `aria-label`, and a visible `:focus-visible` outline state when creating scrollable wrapper containers for data visualization or tabular data.
