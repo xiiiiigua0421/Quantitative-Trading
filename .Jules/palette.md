@@ -1,0 +1,3 @@
+## 2025-02-18 - Add keyboard accessibility to scrollable wrappers
+**Learning:** Scrollable wrapper containers (`overflow: auto` or `scroll`) in HTML reports can't be navigated to using keyboards unless given a `tabindex`. This traps keyboard users from scrolling through their content. Setting `role="region"` and adding a visible focus outline ensures these are properly identified. Furthermore, the report generation outputs localized content in Traditional Chinese, so labels need to be localized accordingly.
+**Action:** When adding or modifying scrollable containers in reports, always ensure they are given a `tabindex="0"`, a `role="region"`, a localized `aria-label` (Traditional Chinese for this app), and `:focus-visible` styles for better keyboard user experience.
