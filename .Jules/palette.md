@@ -1,0 +1,3 @@
+## 2025-02-18 - [Add Keyboard Accessibility to Scrollable Containers]
+**Learning:** Scrollable wrapper containers (`overflow: auto` or `scroll`) in HTML reports can present an accessibility issue. Users who navigate via keyboard cannot reach the scrolled content without explicitly making the container focusable.
+**Action:** When creating or modifying scrollable wrapper containers, always ensure keyboard accessibility by adding `tabindex="0"`, `role="region"`, a descriptive `aria-label` in Traditional Chinese (e.g., `aria-label="帳戶淨值圖表"`), and a visible `:focus-visible` CSS outline.
