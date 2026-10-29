@@ -1,0 +1,3 @@
+## 2024-05-18 - Ensure Keyboard Accessibility for Scrollable Containers
+**Learning:** When using `overflow: auto` or `scroll` for containers in HTML reports (like charts and tables), keyboard users cannot scroll them unless the container itself is focusable. Adding tabindex="0", role="region", and a descriptive aria-label is necessary for a11y, along with a visible focus outline.
+**Action:** Always verify scrollable wrappers are keyboard accessible in generated HTML reports.
