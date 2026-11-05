@@ -1,0 +1,3 @@
+## 2024-03-28 - Scrollable wrappers lack keyboard accessibility
+**Learning:** In the generated HTML reports, `overflow: auto` wrappers for charts and tables (like `.chart-wrap` and `.scroll`) are not inherently keyboard accessible. Screen reader and keyboard users cannot easily navigate into or identify these regions when scrolling is required.
+**Action:** When creating or modifying scrollable containers in reports, always explicitly add `tabindex="0"`, a semantic `role="region"`, a descriptive `aria-label` (in Traditional Chinese for this repo), and ensure a clear `:focus-visible` state using the brand color (#16877e).
