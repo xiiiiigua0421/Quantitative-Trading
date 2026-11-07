@@ -1,0 +1,3 @@
+## 2025-02-12 - Adding Keyboard Accessibility to Scrollable HTML Reports
+**Learning:** Automatically generated HTML reports with scrollable wrapper containers (`overflow: auto` or `scroll`) often lack keyboard accessibility. This makes it impossible for users relying on keyboard navigation to read the full content within the scrolling regions (e.g., wide tables or charts).
+**Action:** Always add `tabindex="0"`, `role="region"`, and a descriptive `aria-label` to these containers. Additionally, provide a visible `:focus-visible` CSS outline to give clear visual feedback when the container receives focus.
