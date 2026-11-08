@@ -1,0 +1,3 @@
+## 2024-11-08 - Keyboard Accessibility for Scrollable Content Containers
+**Learning:** When using horizontal or vertical scrollable containers (like `.chart-wrap` or `.scroll`) for wide tables or charts, screen reader and keyboard-only users cannot access or scroll the content unless the container itself is focusable. Adding an aria-label on these regions must also match the localization of the app (Traditional Chinese in this case).
+**Action:** Always add `tabindex="0"`, `role="region"`, a localized `aria-label`, and a clear `:focus-visible` outline to any `overflow: auto` or scrollable wrapper in HTML reports.
