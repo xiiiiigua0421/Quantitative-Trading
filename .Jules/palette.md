@@ -1,0 +1,3 @@
+## 2026-11-10 - Keyboard Accessibility for Scrollable Regions
+**Learning:** In static HTML reports containing large datasets or charts, wrapper containers with `overflow: auto` (like `.chart-wrap` or `.scroll`) inherently require keyboard accessibility. Screen reader and keyboard-only users will miss the data inside if they cannot focus on and scroll the region.
+**Action:** When creating or modifying scrollable wrapper containers in reports, always add `tabindex="0"`, `role="region"`, a descriptive `aria-label` in the appropriate language (e.g., Traditional Chinese), and a visible `:focus-visible` CSS outline (using the brand color).

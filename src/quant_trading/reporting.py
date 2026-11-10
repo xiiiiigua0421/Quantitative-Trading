@@ -80,17 +80,17 @@ main{{max-width:1160px;margin:40px auto;padding:0 24px 48px}}h1{{font-size:30px;
 .eyebrow{{color:#39716f;font-weight:600;letter-spacing:.08em}}.muted{{color:#647789}}.badge{{display:inline-block;background:#fff1cc;color:#785400;padding:5px 12px;border-radius:6px}}
 .cards{{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}}.card,section{{background:white;border:1px solid #e1e8ef;border-radius:10px;padding:22px}}
 .card span{{display:block;color:#647789;font-size:13px}}.card strong{{display:block;font-size:27px;margin-top:5px;font-variant-numeric:tabular-nums}}section{{margin-top:18px}}
-.chart-wrap{{overflow:auto}}.chart{{width:100%;min-width:700px;height:auto;display:block}}.legend{{display:flex;gap:24px;font-size:13px}}.key::before{{content:"";display:inline-block;width:18px;height:3px;margin:0 8px 3px 0;background:#16877e}}.benchmark::before{{background:#8093aa}}
+.chart-wrap{{overflow:auto}}.chart-wrap:focus-visible,.scroll:focus-visible{{outline:2px solid #16877e;outline-offset:2px;border-radius:4px}}.chart{{width:100%;min-width:700px;height:auto;display:block}}.legend{{display:flex;gap:24px;font-size:13px}}.key::before{{content:"";display:inline-block;width:18px;height:3px;margin:0 8px 3px 0;background:#16877e}}.benchmark::before{{background:#8093aa}}
 ul{{padding-left:22px}}.scroll{{overflow:auto}}table{{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}}th,td{{padding:10px 12px;text-align:right;border-bottom:1px solid #e7edf3}}th{{color:#647789;text-align:right}}pre{{white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;background:#f4f7fa;padding:18px;border-radius:8px}}
 footer{{color:#647789;font-size:12px;margin-top:22px}}@media(max-width:650px){{main{{margin-top:20px;padding:0 14px 30px}}.cards{{grid-template-columns:repeat(2,1fr)}}.card,section{{padding:16px}}h1{{font-size:25px}}.card strong{{font-size:23px}}}}
 </style></head><body><main>
 <div class="eyebrow">QUANT TRADING / v{__version__}</div><h1>{title}</h1>
 <span class="badge">{caution}</span><p class="muted">資料區間 {bars.index[0].date()} — {bars.index[-1].date()} · {len(bars)} 個交易日 · 均線 {config.strategy.fast_window}/{config.strategy.slow_window} · 初始資金 ${config.initial_cash:,.0f}</p>
 <div class="cards">{''.join(cards)}</div>
-<section><h2>帳戶淨值（USD）</h2><div class="legend"><span class="key">策略</span><span class="key benchmark">買入持有基準</span></div><div class="chart-wrap">{chart}</div>
+<section><h2>帳戶淨值（USD）</h2><div class="legend"><span class="key">策略</span><span class="key benchmark">買入持有基準</span></div><div class="chart-wrap" tabindex="0" role="region" aria-label="帳戶淨值圖表區">{chart}</div>
 <p class="muted">橫軸為資料交易日順序；淨值包含持倉與應收股息。成交採次交易日開盤近似，與券商成交可能有差異。</p></section>
 <section><h2>資料與模型限制</h2><ul>{warning_html or '<li>仍需樣本外與前向模擬驗證。</li>'}</ul><ul>{notes_html}</ul></section>
-<section><h2>交易與公司行動紀錄</h2><div class="scroll">{trades_html}</div></section>
+<section><h2>交易與公司行動紀錄</h2><div class="scroll" tabindex="0" role="region" aria-label="交易與公司行動紀錄表">{trades_html}</div></section>
 <section><h2>資料來源</h2><pre>{meta_text}</pre><p class="muted">完整設定、資料雜湊與版本保存於 manifest.json；另有 equity.csv、trades.csv、signals.csv 與 metrics.json。</p></section>
 <footer>此報告用於程式與策略研究。合成資料的報酬不代表真實市場表現；回測與模擬結果不構成獲利保證。</footer>
 </main></body></html>'''
